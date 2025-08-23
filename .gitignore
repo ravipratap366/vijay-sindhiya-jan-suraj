@@ -1,0 +1,38 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore temporary files
+*.tmp
+*.temp
+~*
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# Ignore logs
+*.log
+logs/
+
+# Keep important files
+!index.html
+!styles.css
+!script.js
+!README.md
+!convert_excel_to_json.py
+!image/
+!corrected_extraction/

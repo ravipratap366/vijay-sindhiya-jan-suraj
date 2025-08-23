@@ -1,0 +1,8 @@
+# Custom Domain Configuration for GitHub Pages
+# 
+# To use a custom domain:
+# 1. Uncomment the line below and replace with your domain
+# 2. Configure DNS settings at your domain registrar
+# 3. Point CNAME record to your-username.github.io
+#
+# vijaysindhiya.com
