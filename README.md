@@ -132,13 +132,6 @@ JSON file में यह structure होना चाहिए:
 
 ## Social Media Integration
 
-### Facebook:
-- URL: https://www.facebook.com/vijay.sindhiya.543?mibextid=ZbWKwL
-- Automatically linked in website
-
-### Instagram:
-- URL: https://www.instagram.com/vijaysindhiya?igsh=b3IxN3NrNGR4aTdn
-- Automatically linked in website
 
 ## Jan Suraj Party Information
 
