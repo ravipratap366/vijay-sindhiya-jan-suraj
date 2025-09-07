@@ -70,6 +70,13 @@ body {
     padding: 0 20px;
 }
 
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    justify-content: center;
+    align-items: center;
+}
 /* Enhanced Header Styles */
 .header {
     position: fixed;
@@ -216,7 +223,6 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
     gap: 50px;
     align-items: center;
     position: relative;
@@ -343,7 +349,6 @@ body {
 }
 
 .election-symbol-img {
-    width: 300px;
     height: auto;
     max-height: 350px;
     object-fit: contain;
@@ -358,6 +363,18 @@ body {
 .election-symbol-img:hover {
     transform: scale(1.03);
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 12px 30px rgba(255, 107, 53, 0.4);
+}
+
+@media (max-width: 768px) {
+  .election-symbol-img {
+    width: 90%; 
+  }
+}
+
+@media (max-width: 480px) {
+  .election-symbol-img {
+    width: 100%; /* mobile */
+  }
 }
 
 .symbol-info {
@@ -3729,9 +3746,9 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     max-width: 800px;
     width: 100%;
+    height: auto;
     background: #f8f9fa;
     cursor: grab;
-    min-height: 500px;
 }
 
 .map-wrapper.dragging {
