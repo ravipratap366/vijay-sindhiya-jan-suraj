@@ -1440,7 +1440,6 @@ function showBarChart() {
       titlefont: { size: 14, color: "#2C3E50" },
       tickfont: { size: 9 },
     },
-    height: 4500, // Increased height to show all 171 stations
     margin: { l: 400, r: 100, t: 80, b: 80 }, // Increased left margin for long names
     plot_bgcolor: "rgba(0,0,0,0)",
     paper_bgcolor: "rgba(0,0,0,0)",
