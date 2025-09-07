@@ -795,24 +795,55 @@ function displayRealDataInfo() {
 }
 
 // Enhanced universal search with ranking
-function universalSearch(searchTerm) {
+// function universalSearch(searchTerm) {
+//   if (!searchTerm || searchTerm.trim().length === 0) return [];
+
+//   // Normalize search term - remove extra spaces, convert to lowercase
+//   const term = searchTerm.toLowerCase().trim().replace(/\s+/g, " ");
+//   const MAX_RESULTS = 12; // Consistent with chunked search
+
+//   // Calculate relevance scores for sample data
+//   const rankedResults = voterData
+//     .map((voter) => {
+//       const relevance = calculateSampleDataRelevance(voter, term);
+//       return { voter, relevance };
+//     })
+//     .filter((result) => result.relevance > 0);
+
+//   // Sort by relevance and return top results
+//   rankedResults.sort((a, b) => b.relevance - a.relevance);
+//   return rankedResults.slice(0, MAX_RESULTS).map((result) => result.voter);
+// }
+async function universalSearch(searchTerm) {
   if (!searchTerm || searchTerm.trim().length === 0) return [];
 
-  // Normalize search term - remove extra spaces, convert to lowercase
   const term = searchTerm.toLowerCase().trim().replace(/\s+/g, " ");
-  const MAX_RESULTS = 12; // Consistent with chunked search
+  const MAX_RESULTS = 12;
 
-  // Calculate relevance scores for sample data
-  const rankedResults = voterData
-    .map((voter) => {
-      const relevance = calculateSampleDataRelevance(voter, term);
-      return { voter, relevance };
-    })
-    .filter((result) => result.relevance > 0);
+  // Remote results
+  let remoteResults = [];
+  try {
+    const url = `https://script.google.com/macros/s/AKfycbxeTD2UsL-rVtkp07IZ0GRf-_eurftOG9JGhTx--B05fiF3Mp9DypZiNVhK2FWbolDLXw/exec?q=${encodeURIComponent(
+      searchTerm
+    )}`;
 
-  // Sort by relevance and return top results
-  rankedResults.sort((a, b) => b.relevance - a.relevance);
-  return rankedResults.slice(0, MAX_RESULTS).map((result) => result.voter);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    const data = await res.json();
+
+    if (Array.isArray(data)) {
+      remoteResults = data.map((voter) => ({
+        voter,
+        relevance: calculateSampleDataRelevance(voter, term) || 1, // fallback relevance
+      }));
+    }
+  } catch (err) {
+    console.error("Remote fetch failed:", err.message);
+  }
+
+  // Sort & return top MAX_RESULTS
+  remoteResults.sort((a, b) => b.relevance - a.relevance);
+  return allResults.slice(0, MAX_RESULTS).map((r) => r.voter);
 }
 
 // Calculate relevance score for sample data format
